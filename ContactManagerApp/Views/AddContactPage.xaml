@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ContactManagerApp.Views.AddContactPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Add Contact">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="25"
+            Spacing="15">
+
+            <Label
+                Text="Add New Contact"
+                FontSize="30"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <Label Text="Name" />
+
+            <Entry
+                Placeholder="Enter contact name"
+                Text="{Binding Name}" />
+
+            <Label Text="Email" />
+
+            <Entry
+                Placeholder="Enter email address"
+                Keyboard="Email"
+                Text="{Binding Email}" />
+
+            <Label Text="Phone Number" />
+
+            <Entry
+                Placeholder="Enter phone number"
+                Keyboard="Telephone"
+                Text="{Binding PhoneNumber}" />
+
+            <Label Text="Description" />
+
+            <Editor
+                Placeholder="Enter description"
+                HeightRequest="120"
+                Text="{Binding Description}" />
+
+            <Button
+                Text="Save Contact"
+                Command="{Binding SaveContactCommand}" />
+
+            <Button
+                Text="View Contacts"
+                Command="{Binding ViewContactsCommand}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

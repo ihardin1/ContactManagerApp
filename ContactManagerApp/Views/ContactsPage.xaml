@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ContactManagerApp.Views.ContactsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ContactManagerApp.Models"
+    xmlns:viewModels="clr-namespace:ContactManagerApp.ViewModels"
+    x:DataType="viewModels:ContactsViewModel"
+    Title="Contacts"
+    BackgroundColor="#F5F5F5">
+
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,*,Auto"
+        RowSpacing="15">
+
+        <VerticalStackLayout Spacing="5">
+
+            <Label
+        Text="{Binding Name}"
+        FontSize="20"
+        FontAttributes="Bold"
+        TextColor="Black" />
+
+            <Label
+        Text="{Binding Email}"
+        FontSize="16"
+        TextColor="Gray" />
+
+        </VerticalStackLayout>
+
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding Contacts}"
+            EmptyView="No contacts have been added yet."
+            SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate x:DataType="models:ContactInfo">
+
+                    <Border
+                        Margin="0,5"
+                        Padding="16"
+                        BackgroundColor="White"
+                        Stroke="#D0D0D0"
+                        StrokeThickness="1">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12" />
+                        </Border.StrokeShape>
+
+                        <Border.GestureRecognizers>
+
+                            <TapGestureRecognizer
+                                CommandParameter="{Binding .}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
+                                                  Path=BindingContext.OpenContactCommand}" />
+
+                        </Border.GestureRecognizers>
+
+                        <Grid
+                            ColumnDefinitions="*,Auto"
+                            RowDefinitions="Auto,Auto">
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding Name}"
+                                FontSize="19"
+                                FontAttributes="Bold" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{Binding Email}"
+                                FontSize="15"
+                                TextColor="#666666" />
+
+                            <Label
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Text="›"
+                                FontSize="32"
+                                VerticalOptions="Center"
+                                TextColor="#777777" />
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <Button
+            Grid.Row="2"
+            Text="Add Another Contact"
+            FontAttributes="Bold"
+            HeightRequest="50"
+            Command="{Binding AddAnotherContactCommand}" />
+
+    </Grid>
+
+</ContentPage>

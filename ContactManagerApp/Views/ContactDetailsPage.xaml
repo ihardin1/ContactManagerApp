@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ContactManagerApp.Views.ContactDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Contact Details">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="25"
+            Spacing="15">
+
+            <Label
+                Text="Contact Details"
+                FontSize="30"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Name"
+                FontAttributes="Bold" />
+
+            <Entry
+                Text="{Binding Name}"
+                IsReadOnly="{Binding IsNotEditing}" />
+
+            <Label
+                Text="Email"
+                FontAttributes="Bold" />
+
+            <Entry
+                Text="{Binding Email}"
+                Keyboard="Email"
+                IsReadOnly="{Binding IsNotEditing}" />
+
+            <Label
+                Text="Phone Number"
+                FontAttributes="Bold" />
+
+            <Entry
+                Text="{Binding PhoneNumber}"
+                Keyboard="Telephone"
+                IsReadOnly="{Binding IsNotEditing}" />
+
+            <Label
+                Text="Description"
+                FontAttributes="Bold" />
+
+            <Editor
+                Text="{Binding Description}"
+                HeightRequest="120"
+                IsReadOnly="{Binding IsNotEditing}" />
+
+            <Button
+                Text="Edit"
+                IsVisible="{Binding IsNotEditing}"
+                Command="{Binding EditContactCommand}" />
+
+            <VerticalStackLayout
+                Spacing="10"
+                IsVisible="{Binding IsEditing}">
+
+                <Button
+                    Text="Save Changes"
+                    Command="{Binding SaveChangesCommand}" />
+
+                <Button
+                    Text="Cancel"
+                    Command="{Binding CancelEditingCommand}" />
+
+            </VerticalStackLayout>
+
+            <Button
+                Text="Back to Contacts"
+                Command="{Binding GoBackCommand}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
